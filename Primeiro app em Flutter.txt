@@ -1,0 +1,84 @@
+// Copyright (c) 2019, the Dart project authors.  Please see the AUTHORS file
+// for details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
+
+import 'package:flutter/material.dart';
+
+const Color darkBlue = Color.fromARGB(255, 18, 32, 47);
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Bootcamp',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      home: MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  
+  int _contador = 0;
+  
+  void _incremento() {
+    setState(() {
+      _contador++;
+    });
+  }
+  
+  void _decremento() {
+    setState(() {
+      _contador--;
+    });
+  }
+  
+  @override
+  initState() {
+    super.initState();
+    setState(() => _contador = 23);
+  }
+ 
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: Text("Flutter Bootcamp"),
+      ),
+      
+      body: Center(
+        child: Column(
+            children: [
+              const Text("Vecê clicou o botão essas vezes: "), 
+              Text("$_contador")
+            ]
+        ),
+      ),
+      floatingActionButton: Row( 
+        children: [
+        FloatingActionButton(
+        onPressed: _incremento,
+        child: const Icon(Icons.add_circle),
+      ),
+       FloatingActionButton(
+        onPressed: _decremento,
+        child: const Icon(Icons.remove_circle)
+      ),
+     ]
+     ),
+    );
+  }
+}
