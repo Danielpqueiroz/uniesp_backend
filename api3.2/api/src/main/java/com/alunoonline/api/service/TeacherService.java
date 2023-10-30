@@ -1,0 +1,30 @@
+package com.alunoonline.api.service;
+
+import com.alunoonline.api.model.Teacher;
+import com.alunoonline.api.repository.TeacherRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+
+public class TeacherService {
+
+    @Autowired
+    TeacherRepository repository;
+
+    public Teacher create (Teacher teacher){
+        return repository.save(teacher);
+    }
+
+    public List<Teacher> findALL() {return  repository.findAll(); }
+
+    public Optional<Teacher> findById(Long id) {
+        return repository.findById(id);
+    }
+
+    public  void delete(Long id) {repository.deleteById(id);}
+
+}
