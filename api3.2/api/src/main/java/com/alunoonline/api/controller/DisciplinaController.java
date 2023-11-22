@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/disciplina")
 public class DisciplinaController {
@@ -19,5 +21,11 @@ public class DisciplinaController {
         Disciplina disciplinaCreated = service.create(disciplina);
 
         return ResponseEntity.status(201).body(disciplinaCreated);
+    }
+
+    @GetMapping("/teacher/{teacherId}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Disciplina> findByTeacherId(@PathVariable Long teacherId){
+        return service.findByTeacherId(teacherId);
     }
 }
