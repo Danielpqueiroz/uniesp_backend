@@ -23,9 +23,29 @@ public class DisciplinaController {
         return ResponseEntity.status(201).body(disciplinaCreated);
     }
 
+    @GetMapping("all")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Disciplina> findAll(){
+
+        return service.findAll();
+    }
     @GetMapping("/teacher/{teacherId}")
     @ResponseStatus(HttpStatus.OK)
     public List<Disciplina> findByTeacherId(@PathVariable Long teacherId){
         return service.findByTeacherId(teacherId);
     }
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete (@PathVariable Long id){
+
+        service.delete(id);
+    }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void update(@PathVariable Long id, @RequestBody Disciplina discAtualizada){
+        service.update(id, discAtualizada);
+    }
+
+
 }

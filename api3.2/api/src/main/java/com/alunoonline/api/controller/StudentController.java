@@ -2,6 +2,7 @@ package com.alunoonline.api.controller;
 import com.alunoonline.api.model.Student;
 import com.alunoonline.api.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -40,5 +41,11 @@ public class StudentController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
         service.delete(id);
+    }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void atualizar(@PathVariable Long id, @RequestBody Student alunoAtualizado) throws ChangeSetPersister.NotFoundException {
+        service.atualizar(id, alunoAtualizado);
     }
 }
